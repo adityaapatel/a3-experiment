@@ -108,5 +108,6 @@ GitHub Details
 - To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
 - Name your submission using the following scheme: 
 ```
-a3-FirstLastnameMember1-FirstLastnameMember2-FirstLastnameMember3-...
+a3-AdityaPatel-KarinneAiello-VictorRadina
+a3-TeamMarble
 ```
