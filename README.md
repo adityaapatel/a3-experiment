@@ -27,7 +27,8 @@ If you decide to go in a custom route, do plan to sync with staff so we can help
 (Basically, we still want you to do a multi-trial study with each participant, to raise the chance that you get solid results.)
 
 How you measure "error" and similar facets also matter. But you can't go wrong with finding a good visualization study online to start from :)
-
+ 
+ 
 Requirements
 ---
 
