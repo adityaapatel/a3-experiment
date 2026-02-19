@@ -1,9 +1,315 @@
 <!DOCTYPE html>
-<div id="container"></div>
-<script type="module">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A3 Experiment by Aditya, Karinne, and Victor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="container"></div>
 
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+  <script type="module">
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-console.log(d3);
+    // Config stuff
+    const TOTAL_TRIALS = 60; // Trials
+    const VALUES_N = 5; // Values
+    const CONDITIONS = ["bar", "stacked", "donut"]; // Chart types
 
-</script>
+    const W = 550;
+    const H = 320;
+    const M = { top: 20, right: 20, bottom: 40, left: 50 };
+
+    // --- STATE ---
+    let participantId = "";
+    let trialIndex = 0;
+    let trials = [];
+    let results = [];
+    let currentTrial = null;
+
+    // --- UI ---
+    const container = d3.select("#container");
+
+    container.append("h2").text("Visualization Experiment");
+
+    // PID row
+    const pidRow = container.append("div").attr("class", "row");
+    pidRow.append("label").text("Participant ID: ");
+    const pidInput = pidRow.append("input")
+      .attr("id", "pid")
+      .attr("placeholder", "P01");
+    const startBtn = pidRow.append("button").text("Start");
+
+    // Q prompt
+    container.append("div")
+      .attr("id", "prompt")
+      .text("Two items are outlined. What percentage is the smaller of the larger?");
+
+    // Status
+    const status = container.append("div")
+      .attr("id", "status")
+      .attr("class", "row");
+
+    // Vis box
+    container.append("div").attr("id", "vis");
+
+    // Ans row
+    const ansRow = container.append("div").attr("class", "row");
+    ansRow.append("label").text("Answer (%): ");
+    const ansInput = ansRow.append("input")
+      .attr("id", "ans")
+      .attr("type", "number")
+      .attr("min", 0)
+      .attr("max", 100)
+      .attr("step", 1);
+    const submitBtn = ansRow.append("button")
+      .text("Submit")
+      .attr("disabled", true);
+
+    // DL row
+    const dlRow = container.append("div").attr("class", "row");
+    const downloadBtn = dlRow.append("button")
+      .text("Download CSV")
+      .attr("disabled", true);
+
+    // --- HELPERS ---
+
+    // Shuffle arr (Fisher-Yates)
+    function shuffle(arr) { 
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+// Make 1 trial w/ rand vals, pick 2, calc %
+
+    function generateTrial(condition) {
+      const values = Array.from({ length: VALUES_N }, () =>
+        Math.floor(Math.random() * 91) + 10 // Random values between 10 and 100 to avoid super tiny bars
+      );
+
+      let i = Math.floor(Math.random() * VALUES_N);
+      let j;
+    // Ensure j is different from i so we have two distinct values to compare
+      do {
+        j = Math.floor(Math.random() * VALUES_N);
+      } while (j === i);
+
+      const a = values[i];
+      const b = values[j];
+      const truePercent = Math.round((Math.min(a, b) / Math.max(a, b)) * 100);
+
+      return {
+        // Info for trial: cond, vals, idx, %
+        condition,
+        values,
+        compare: [i, j],
+        valueA: a,
+        valueB: b,
+        truePercent
+      };
+    }
+// Arr -> CSV str (w/ header)
+
+    function toCSV(rows) {
+      const headers = ["ParticipantID", "TrialNum", "Vis", "TruePercent", "ReportedPercent"];
+      const lines = [headers.join(",")];
+      for (const r of rows) {
+        lines.push([r.ParticipantID, r.TrialNum, r.Vis, r.TruePercent, r.ReportedPercent].join(","));
+      }
+      return lines.join("\n");
+    }
+// DL CSV (makes blob, temp url, auto click, fname w/ PID+date)
+    function downloadCSV() {
+      if (!results.length) return;
+
+      const csv = toCSV(results);
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+
+      const date = new Date().toISOString().slice(0, 10);
+      const filename = `a3_${participantId}_${date}.csv`;
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    // --- RENDERING ---
+    // Clear vis area
+    function clearVis() {
+      d3.select("#vis").selectAll("*").remove();
+    }
+// Render charts (bar/stacked/donut), mark segs
+    function renderBar(trial) {
+      clearVis();
+      const svg = d3.select("#vis").append("svg").attr("width", W).attr("height", H);
+
+      const x = d3.scaleBand()
+        .domain(d3.range(trial.values.length))
+        .range([M.left, W - M.right])
+        .padding(0.2);
+
+      const y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([H - M.bottom, M.top]);
+
+      svg.selectAll("rect")
+        .data(trial.values.map((v, idx) => ({ v, idx })))
+        .join("rect")
+        .attr("x", d => x(d.idx))
+        .attr("y", d => y(d.v))
+        .attr("width", x.bandwidth())
+        .attr("height", d => y(0) - y(d.v))
+        .attr("class", d => trial.compare.includes(d.idx) ? "marked" : "seg");
+    }
+// Stacked bar: cum vals, mark segs
+    function renderStacked(trial) {
+      clearVis();
+      const svg = d3.select("#vis").append("svg").attr("width", W).attr("height", H);
+
+      const total = d3.sum(trial.values);
+
+      const x = d3.scaleBand()
+        .domain(["Stack"])
+        .range([M.left, W - M.right])
+        .padding(0.6);
+
+      const y = d3.scaleLinear()
+        .domain([0, total])
+        .range([H - M.bottom, M.top]);
+
+      let cum = 0;
+      const segs = trial.values.map((v, idx) => {
+        const start = cum;
+        cum += v;
+        return { v, idx, start, end: cum };
+      });
+// (see above)
+      svg.selectAll("rect")
+        .data(segs)
+        .join("rect")
+        .attr("x", x("Stack"))
+        .attr("width", x.bandwidth())
+        .attr("y", d => y(d.end))
+        .attr("height", d => y(d.start) - y(d.end))
+        .attr("class", d => trial.compare.includes(d.idx) ? "marked" : "seg");
+    }
+// Donut: pie+arc, mark segs
+    function renderDonut(trial) {
+      clearVis();
+      const svg = d3.select("#vis").append("svg").attr("width", W).attr("height", H);
+
+      const cx = W / 2;
+      const cy = H / 2;
+      const outer = 120;
+      const inner = 60;
+
+      const pie = d3.pie()
+        .sort(null)
+        .value(d => d.v);
+
+      const arc = d3.arc()
+        .innerRadius(inner)
+        .outerRadius(outer);
+
+      const arcs = pie(trial.values.map((v, idx) => ({ v, idx })));
+
+      const g = svg.append("g")
+        .attr("transform", `translate(${cx},${cy})`);
+
+      g.selectAll("path")
+        .data(arcs)
+        .join("path")
+        .attr("d", arc)
+        .attr("class", d => trial.compare.includes(d.data.idx) ? "marked" : "seg");
+    }
+// Show trial, update status, reset ans
+    function renderTrial() {
+      currentTrial = trials[trialIndex];
+
+      status.text(`Trial ${trialIndex + 1} / ${TOTAL_TRIALS}  |  Condition: ${currentTrial.condition}`);
+
+      if (currentTrial.condition === "bar") renderBar(currentTrial);
+      if (currentTrial.condition === "stacked") renderStacked(currentTrial);
+      if (currentTrial.condition === "donut") renderDonut(currentTrial);
+
+      ansInput.property("value", "");
+      ansInput.node().focus();
+    }
+
+    // --- FLOW ---
+
+    // Start exp: get PID, make trials, show 1st, enable btns
+    function startExperiment() {
+      participantId = (pidInput.property("value") || "").trim();
+      if (!participantId) {
+        alert("Enter a Participant ID (e.g., P01).");
+        return;
+      }
+
+      // 20/trial type, 60 total, shuffle
+      const conds = [];
+      for (const c of CONDITIONS) {
+        for (let k = 0; k < TOTAL_TRIALS / CONDITIONS.length; k++) conds.push(c);
+      }
+      shuffle(conds);
+
+      trials = conds.map(c => generateTrial(c));
+      results = [];
+      trialIndex = 0;
+
+      submitBtn.attr("disabled", null);
+      downloadBtn.attr("disabled", true);
+
+      renderTrial();
+    }
+// On submit: check ans, save, next or end, enable DL
+    function submitAnswer() {
+      const reported = Number(ansInput.property("value"));
+      if (!Number.isFinite(reported) || reported < 0 || reported > 100) {
+        alert("Enter a whole percent 0–100.");
+        return;
+      }
+
+      results.push({
+        ParticipantID: participantId,
+        TrialNum: trialIndex + 1,
+        Vis: currentTrial.condition,
+        TruePercent: currentTrial.truePercent,
+        ReportedPercent: Math.round(reported)
+      });
+
+      trialIndex++;
+
+      if (trialIndex >= TOTAL_TRIALS) {
+        submitBtn.attr("disabled", true);
+        downloadBtn.attr("disabled", null);
+        status.text(`Done! Download CSV for ${participantId}.`);
+        clearVis();
+        return;
+      }
+
+      renderTrial();
+    }
+
+    // --- EVENTS ---
+
+    // Btns: start, submit, DL, Enter=submit
+    startBtn.on("click", startExperiment);
+    submitBtn.on("click", submitAnswer);
+    downloadBtn.on("click", downloadCSV);
+
+    ansInput.on("keydown", (event) => {
+      if (event.key === "Enter" && !submitBtn.attr("disabled")) submitAnswer();
+    });
+
+  </script>
+</body>
+</html>

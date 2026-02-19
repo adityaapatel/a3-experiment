@@ -1,3 +1,54 @@
+<!-- BEGIN: Aditya's Contributions -->
+## Contributions by Aditya
+
+- Improved code readability by updating all comments in both the HTML (JavaScript) and CSS files.
+- Rewrote long, formal comments to be short, clear, and in plain English, making the code easier to understand for everyone.
+- Ensured that all code documentation is direct and helpful, following best practices for clarity.
+- Helped make the project more accessible for future contributors and reviewers.
+<!-- END: Aditya's Contributions -->
+<!-- BEGIN: Aditya's Code Explanation -->
+## Code Contributions by Aditya
+
+### index.html
+- Rewrote and simplified all code comments to be short, clear, and in plain English, making the JavaScript logic easy to follow.
+- Used direct section headers (e.g., `// --- STATE ---`, `// --- UI ---`, etc.) to organize the code for readability.
+- Updated all helper and rendering function comments to be concise and to the point, so anyone can quickly understand what each function does.
+- Example:
+
+```js
+// --- HELPERS ---
+
+// Shuffle arr (Fisher-Yates)
+function shuffle(arr) { ... }
+
+// Make 1 trial w/ rand vals, pick 2, calc %
+function generateTrial(condition) { ... }
+
+// Arr -> CSV str (w/ header)
+function toCSV(rows) { ... }
+
+// DL CSV (makes blob, temp url, auto click, fname w/ PID+date)
+function downloadCSV() { ... }
+```
+
+### style.css
+- Replaced all long or unclear comments with simple, clear English above each CSS block.
+- Each section now has a comment that describes its purpose, e.g.:
+
+```css
+/* Set font and margin for the page */
+body { ... }
+
+/* Limit the container width */
+#container { ... }
+
+/* Style for the chart area */
+#vis { ... }
+```
+- This makes the CSS easy to scan and understand for anyone new to the project.
+---
+<!-- END: Aditya's Code Explanation -->
+
 Assignment 3 - Replicating a Classic Experiment  
 ===
 

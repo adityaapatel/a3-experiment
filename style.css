@@ -1,0 +1,55 @@
+body {
+/* Set font and margin for the page */
+  font-family: system-ui, Arial, sans-serif;
+  margin: 20px;
+}
+
+#container {
+/* Limit the container width */
+  max-width: 900px;
+}
+
+#vis {
+/* Style for the chart area */
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 10px;
+  width: fit-content;
+}
+
+.axis path,
+.axis line {
+/* Style for chart axes */
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.seg {
+/* Normal chart segment */
+  fill: #ffffff;
+  stroke: #000000;
+  stroke-width: 1px;
+}
+
+.marked {
+/* Highlighted segment */
+  fill: #ffffff;
+  stroke: #000000;
+  stroke-width: 3px;
+}
+
+.row {
+/* Space between rows */
+  margin: 10px 0;
+}
+
+input {
+/* Padding for input fields */
+  padding: 6px 8px;
+}
+
+button {
+/* Padding for buttons */
+  padding: 6px 10px;
+  cursor: pointer;
+}
