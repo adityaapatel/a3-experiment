@@ -17,7 +17,7 @@ To rank the three chosen visualization types from best to worst performance, we 
 > [!IMPORTANT]
 > Given the above collected data from 200 trials for each visualization type, a **bar chart** is a far better illustrator than a stacked bar or donut chart.
 
-## Intervals
+## Confidence Intervals
 In order to visualize the range of error for the visualizations, we constructed bootstrapped 95% confidence intervals for the error upper and lower bounds--visualized below. 
 
 ![ci](img/ci-results.png)
