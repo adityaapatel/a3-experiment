@@ -5,7 +5,7 @@ Find the experiment hosted on GitHub Pages [here](https://adityaapatel.github.io
 ## Experiment Overview
 The type of visualization chosen to convey data can have a significant affect on the accuracy of viewers' perceptions. Our team wanted to investigate the idea that stacked bar charts are poor illustrations of information when compared to other charts. To do so, we developed a survey that showed each participant 20 stacked bar, 20 bar, and 20 donut charts and recorded their precision when answering "What percentage is the smaller value of the larger value?" between two shapes marked with bold outline. Each of our ten surveyees viewed their 60 trials with 2 data points marked out of 5 random generations, in random order, and having possible answers between 0% and 100%. When documenting respondents' accuracies between the the true percentage and their reported percentage, we used Cleveland and McGill's equation $\log_2(|judged percent - true percent| + 0.125)$ to avoid the bias that would arise from using `abs(ReportedPercent – TruePercent)` as the score for error. 
 
-## Vises
+## Visualization Comparison
 To rank the three chosen visualization types from best to worst performance, we calculated and reported the average log2Error for each visualization across all trials and participants. See this information in the table below and an example of each visualization type from our survey.
 
 | Visualization Type  | Average Error | Example  |
