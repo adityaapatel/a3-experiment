@@ -1,5 +1,6 @@
 # Assignment 3 - Replicating a Classic Experiment  
 Authors: Aditya Patel, Karinne Aiello, Victor Radina
+
 Find the experiment hosted on GitHub Pages [here](https://adityaapatel.github.io/a3-experiment/).
 
 ## Experiment Overview
@@ -28,10 +29,10 @@ Our results compare quite well to those from other trials. The bar chart's avera
 
 ## Achievements
 ### Technical 
-- [ x ] Built a trial tracker (e.g. "Trial 29/60") into the survey, allowing participants to monitor their progress to reduce dropouts--as 60 trials is not short  
-- [ x ] Implemented functionality across a wide variety of languages, including HTML, CSS, JavaScript, R, and Python, demonstrating depth and versatility in coding  
-- [ x ] Outlined the code to be modular and easy to maintain and update by clearly separating survey logic, visualization, and data handling  
-- [ x ] Added clear, concise comments throughout every file to ensure quick understanding of functionality and aid reproducibility of the experiment  
+- [x] Built a trial tracker (e.g. "Trial 29/60") into the survey, allowing participants to monitor their progress to reduce dropouts--as 60 trials is not short  
+- [x] Implemented functionality across a wide variety of languages, including HTML, CSS, JavaScript, R, and Python, demonstrating depth and versatility in coding  
+- [x] Outlined the code to be modular and easy to maintain and update by clearly separating survey logic, visualization, and data handling  
+- [x] Added clear, concise comments throughout every file to ensure quick understanding of functionality and aid reproducibility of the experiment  
 &ensp; &ensp; Example:
 
     ```js
@@ -55,8 +56,8 @@ Our results compare quite well to those from other trials. The bar chart's avera
     ```
 
 ### Design
-- [ x ] Explained the experiment's process and results in a visually interesting and polished README to reduce confusion and strengthen the professionalism of the investigation, referencing [this article](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) and [this one](https://www.codegenes.net/blog/how-to-draw-checkbox-or-tick-mark-in-github-markdown-table/)  
-- [ x ] Designed the survey thoughtfully to improve participant experience, selecting a readable font and highlighting buttons to create a clean, straightforward UI  
+- [x] Explained the experiment's process and results in a visually interesting and polished README to reduce confusion and strengthen the professionalism of the investigation, referencing [this article](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) and [this one](https://www.codegenes.net/blog/how-to-draw-checkbox-or-tick-mark-in-github-markdown-table/)  
+- [x] Designed the survey thoughtfully to improve participant experience, selecting a readable font and highlighting buttons to create a clean, straightforward UI  
 &ensp; &ensp; Example:
 
     ```css
