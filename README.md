@@ -1,3 +1,30 @@
+Assignment 3 - Replicating a Classic Experiment  
+===
+Authors: Aditya Patel, Karinne Aiello, Victor Radina
+Find the experiment hosted on GitHub Pages [here](https://adityaapatel.github.io/a3-experiment/).
+
+# Experiment Overview
+The type of visualization chosen to convey data can have a significant affect on the accuracy of viewers' perceptions. Our team wanted to investigate the idea that stacked bar charts are poor illustrations of information when compared to other charts. To do so, we developed a survey that showed participants 20 stacked bar charts, 20 bar charts, and 20 donut charts each and recorded their precision when answering "What percentage is the smaller value of the larger value?" between two shapes marked with bold outline. Each of our ten surveyees viewed their 60 trials with 2 data points marked out of 5 random generations, in random order, and having possible answers between 0% and 100%. When documenting respondents' accuracies between the the true percentage and their reported percentage, we used Cleveland and McGill's equation `$\log_2(|judged percent - true percent| + 0.125)$` to avoid the bias that would arise from using `abs(ReportedPercent – TruePercent)` as the score for error. 
+
+
+
+intervals
+
+bar
+![bar](img/Bar_Example.png)
+
+stacked 
+![bar](img/Stacked_Example.png)
+
+donut
+![bar](img/Donut_Example.png)
+
+technical
+- [x] text
+
+design
+- [x] text
+
 <!-- BEGIN: Aditya's Contributions -->
 ## Contributions by Aditya
 
@@ -54,8 +81,7 @@ body { ... }
 ---
 <!-- END: Aditya's Code Explanation -->
 
-Assignment 3 - Replicating a Classic Experiment  
-===
+
 
 For the scope of this project, assume the role of a scientist who runs experiments for a living.
 
