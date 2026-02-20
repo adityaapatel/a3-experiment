@@ -3,12 +3,12 @@ Authors: Aditya Patel, Karinne Aiello, Victor Radina
 Find the experiment hosted on GitHub Pages [here](https://adityaapatel.github.io/a3-experiment/).
 
 ## Experiment Overview
-The type of visualization chosen to convey data can have a significant affect on the accuracy of viewers' perceptions. Our team wanted to investigate the idea that stacked bar charts are poor illustrations of information when compared to other charts. To do so, we developed a survey that showed each participant 20 stacked bar, 20 bar, and 20 donut charts and recorded their precision when answering "What percentage is the smaller value of the larger value?" between two shapes marked with bold outline. Each of our ten surveyees viewed their 60 trials with 2 data points marked out of 5 random generations, in random order, and having possible answers between 0% and 100%. When documenting respondents' accuracies between the the true percentage and their reported percentage, we used Cleveland and McGill's equation $\log_2(|judged percent - true percent| + 0.125)$ to avoid the bias that would arise from using `abs(ReportedPercent – TruePercent)` as the score for error. 
+The type of visualization chosen to convey data can have a significant affect on the accuracy of viewers' perceptions. Our team wanted to investigate the idea that stacked bar charts are poor illustrations of information when compared to other charts. To do so, we developed a survey that showed each participant 20 stacked bar, 20 bar, and 20 donut charts and recorded their precision when answering "What percentage is the smaller value of the larger value?" between two shapes marked with bold outline. Each of our ten surveyees viewed their 60 trials with 2 data points marked out of 5 random generations, in random order, and having possible answers between 0% and 100%. When documenting respondents' accuracies between the the true percentage and their reported percentage, we used Cleveland and McGill's equation $\log_2(|judged  percent - true  percent| + 0.125)$ to avoid the bias that would arise from using `abs(ReportedPercent – TruePercent)` as the score for error. 
 
 ## Visualization Comparison
 To rank the three chosen visualization types from best to worst performance, we calculated and reported the average log2Error for each visualization across all trials and participants. See this information in the table below and an example of each visualization type from our survey.
 
-| Visualization Type  | Average Error | Example  |
+| Visualization Type  | Average log2Error | Example  |
 | ------------- | ------------- | ------------- |
 | Bar  | 1.4663  | ![bar](img/Bar_Example.png)  |
 | Stacked Bar  | 2.0992  | ![stacked](img/Stacked_Example.png)  |
@@ -28,11 +28,11 @@ Our results compare quite well to those from other trials. The bar chart's avera
 
 ## Achievements
 ### Technical 
-- [x] Built a trial tracker (e.g. "Trial 29/60") into the survey, allowing participants to monitor their progress to reduce dropouts--as 60 trials is not short
-- [x] Implemented functionality across a wide variety of languages, including HTML, CSS, JavaScript, R, and Python, demonstrating depth and versatility in coding
-- [x] Outlined the code to be modular and easy to maintain and update by clearly separating survey logic, visualization, and data handling
-- [x] Added clear, concise comments throughout every file to ensure quick understanding of functionality and aid reproducibility of the experiment
-    - Example:
+- [&#9745;] Built a trial tracker (e.g. "Trial 29/60") into the survey, allowing participants to monitor their progress to reduce dropouts--as 60 trials is not short
+- [&#9745;] Implemented functionality across a wide variety of languages, including HTML, CSS, JavaScript, R, and Python, demonstrating depth and versatility in coding
+- [&#9745;] Outlined the code to be modular and easy to maintain and update by clearly separating survey logic, visualization, and data handling
+- [&#9745;] Added clear, concise comments throughout every file to ensure quick understanding of functionality and aid reproducibility of the experiment
+  Example:
 
     ```js
     // --- HELPERS ---
@@ -55,9 +55,9 @@ Our results compare quite well to those from other trials. The bar chart's avera
     ```
 
 ### Design
-- [x] Explained the experiment's process and results in a visually interesting and polished README to reduce confusion and strengthen the professionalism of the investigation, referencing [this article](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-- [x] Designed the survey thoughtfully to improve participant experience, selecting a readable font and highlighting buttons to create a clean, straightforward UI
-    - Example:
+- [&#9745;] Explained the experiment's process and results in a visually interesting and polished README to reduce confusion and strengthen the professionalism of the investigation, referencing [this article](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+- [&#9745;] Designed the survey thoughtfully to improve participant experience, selecting a readable font and highlighting buttons to create a clean, straightforward UI
+  Example:
 
     ```css
     /* Set font and margin for the page */
