@@ -28,10 +28,10 @@ Our results compare quite well to those from other trials. The bar chart's avera
 
 ## Achievements
 ### Technical 
-&#9745; Built a trial tracker (e.g. "Trial 29/60") into the survey, allowing participants to monitor their progress to reduce dropouts--as 60 trials is not short
-&#9745; Implemented functionality across a wide variety of languages, including HTML, CSS, JavaScript, R, and Python, demonstrating depth and versatility in coding
-&#9745; Outlined the code to be modular and easy to maintain and update by clearly separating survey logic, visualization, and data handling
-&#9745; Added clear, concise comments throughout every file to ensure quick understanding of functionality and aid reproducibility of the experiment
+&#9745; Built a trial tracker (e.g. "Trial 29/60") into the survey, allowing participants to monitor their progress to reduce dropouts--as 60 trials is not short  
+&#9745; Implemented functionality across a wide variety of languages, including HTML, CSS, JavaScript, R, and Python, demonstrating depth and versatility in coding  
+&#9745; Outlined the code to be modular and easy to maintain and update by clearly separating survey logic, visualization, and data handling  
+&#9745; Added clear, concise comments throughout every file to ensure quick understanding of functionality and aid reproducibility of the experiment  
   Example:
 
     ```js
@@ -55,8 +55,8 @@ Our results compare quite well to those from other trials. The bar chart's avera
     ```
 
 ### Design
-&#9745; Explained the experiment's process and results in a visually interesting and polished README to reduce confusion and strengthen the professionalism of the investigation, referencing [this article](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) and [this one](https://www.codegenes.net/blog/how-to-draw-checkbox-or-tick-mark-in-github-markdown-table/)
-&#9745; Designed the survey thoughtfully to improve participant experience, selecting a readable font and highlighting buttons to create a clean, straightforward UI
+&#9745; Explained the experiment's process and results in a visually interesting and polished README to reduce confusion and strengthen the professionalism of the investigation, referencing [this article](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) and [this one](https://www.codegenes.net/blog/how-to-draw-checkbox-or-tick-mark-in-github-markdown-table/)  
+&#9745; Designed the survey thoughtfully to improve participant experience, selecting a readable font and highlighting buttons to create a clean, straightforward UI  
   Example:
 
     ```css
