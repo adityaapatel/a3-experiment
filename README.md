@@ -1,5 +1,4 @@
 # Assignment 3 - Replicating a Classic Experiment  
-===
 Authors: Aditya Patel, Karinne Aiello, Victor Radina
 Find the experiment hosted on GitHub Pages [here](https://adityaapatel.github.io/a3-experiment/).
 
@@ -16,70 +15,57 @@ To rank the three chosen visualization types from best to worst performance, we 
 | Donut  | 2.2203  | ![donut](img/Donut_Example.png)  |
 
 > [!IMPORTANT]
-> Given the above collected data from 200 trials for each visualization type, a bar chart is a far better illustrator than a stacked bar or donut chart.
+> Given the above collected data from 200 trials for each visualization type, a **bar chart** is a far better illustrator than a stacked bar or donut chart.
 
 ## Intervals
+In order to visualize the range of error for the visualizations, we constructed bootstrapped 95% confidence intervals for the error upper and lower bounds--visualized below. 
 
+![ci](img/ci-results.png)
+
+Our results compare quite well to those from other trials. The bar chart's average error of 1.4663 is within 0.2 of the T1 means from Cleveland & McGill's Results and Crowdsourced Results. The stacked bar chart's average error of 2.0992 is quite far from Cleveland & McGill's Results with an average of 2.75, but it is within 0.2 of the T5 mean from Crowdsourced Results. While neither figure reports a mean for a donut chart, the Crowdsourced Results include a pie chart, which is the most similar. The donut chart's average of 2.2203 appears to be identical to that of T6 from Crowdsourced Results.
+
+![cleveland](img/cleveland-results.png)
 
 ## Achievements
 ### Technical 
-- [x] text
+- [x] Built a trial tracker (e.g. "Trial 29/60") into the survey, allowing participants to monitor their progress to reduce dropouts--as 60 trials is not short
+- [x] Implemented functionality across a wide variety of languages, including HTML, CSS, JavaScript, R, and Python, demonstrating depth and versatility in coding
+- [x] Outlined the code to be modular and easy to maintain and update by clearly separating survey logic, visualization, and data handling
+- [x] Added clear, concise comments throughout every file to ensure quick understanding of functionality and aid reproducibility of the experiment
+    - Example:
+
+    ```js
+    // --- HELPERS ---
+
+    //vic
+    // added csv combiners, and log formula - run after all tests are run
+
+
+    // Shuffle arr (Fisher-Yates)
+    function shuffle(arr) { ... }
+
+    // Make 1 trial w/ rand vals, pick 2, calc %
+    function generateTrial(condition) { ... }
+
+    // Arr -> CSV str (w/ header)
+    function toCSV(rows) { ... }
+
+    // DL CSV (makes blob, temp url, auto click, fname w/ PID+date)
+    function downloadCSV() { ... }
+    ```
 
 ### Design
-- [x] text
+- [x] Explained the experiment's process and results in a visually interesting and polished README to reduce confusion and strengthen the professionalism of the investigation, referencing [this article](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+- [x] Designed the survey thoughtfully to improve participant experience, selecting a readable font and highlighting buttons to create a clean, straightforward UI
+    - Example:
 
-<!-- BEGIN: Aditya's Contributions -->
-## Contributions by Aditya
+    ```css
+    /* Set font and margin for the page */
+    body { ... }
 
-- Improved code readability by updating all comments in both the HTML (JavaScript) and CSS files.
-- Rewrote long, formal comments to be short, clear, and in plain English, making the code easier to understand for everyone.
-- Ensured that all code documentation is direct and helpful, following best practices for clarity.
-- Helped make the project more accessible for future contributors and reviewers.
-<!-- END: Aditya's Contributions -->
-<!-- BEGIN: Aditya's Code Explanation -->
-## Code Contributions by Aditya
+    /* Limit the container width */
+    #container { ... }
 
-### index.html
-- Rewrote and simplified all code comments to be short, clear, and in plain English, making the JavaScript logic easy to follow.
-- Used direct section headers (e.g., `// --- STATE ---`, `// --- UI ---`, etc.) to organize the code for readability.
-- Updated all helper and rendering function comments to be concise and to the point, so anyone can quickly understand what each function does.
-- Example:
-
-```js
-// --- HELPERS ---
-
-//vic
-// added csv combiners, and log formula - run after all tests are run
-
-
-
-// Shuffle arr (Fisher-Yates)
-function shuffle(arr) { ... }
-
-// Make 1 trial w/ rand vals, pick 2, calc %
-function generateTrial(condition) { ... }
-
-// Arr -> CSV str (w/ header)
-function toCSV(rows) { ... }
-
-// DL CSV (makes blob, temp url, auto click, fname w/ PID+date)
-function downloadCSV() { ... }
-```
-
-### style.css
-- Replaced all long or unclear comments with simple, clear English above each CSS block.
-- Each section now has a comment that describes its purpose, e.g.:
-
-```css
-/* Set font and margin for the page */
-body { ... }
-
-/* Limit the container width */
-#container { ... }
-
-/* Style for the chart area */
-#vis { ... }
-```
-- This makes the CSS easy to scan and understand for anyone new to the project.
----
-<!-- END: Aditya's Code Explanation -->
+    /* Style for the chart area */
+    #vis { ... }
+    ```

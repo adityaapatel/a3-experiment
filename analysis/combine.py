@@ -8,9 +8,12 @@ files = glob.glob("trials/a3*.csv")
 # combine all trials
 df = pd.concat([pd.read_csv(f) for f in files])
 
+# calculate error using Cleveland & McGill's formula
 df["Error"] = np.log2(np.abs(df["ReportedPercent"] - df["TruePercent"]) + 0.125)
 df["Error"] = df["Error"].where(df["ReportedPercent"] != df["TruePercent"], 0)
 
+# save combined data
 df.to_csv("trials/master.csv", index=False)
 
+# report file summary
 print(f"Combined {len(files)} files, {len(df)} total trials ")
