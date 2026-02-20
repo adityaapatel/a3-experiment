@@ -3,9 +3,6 @@ library(ggplot2)
 # load data
 df <- read.csv("trials/master.csv")
 
-# do absolute value of errors
-df$Error <- abs(df$Error)
-
 # filter by vis type
 df$type <- factor(
   sub("_[0-9]+$", "", df$Vis),

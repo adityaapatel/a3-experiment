@@ -2,9 +2,10 @@ import pandas as pd
 import glob as glob
 import numpy as np
 
-
+# load and concatenate all trials
 files = glob.glob("trials/a3*.csv")
 
+# combine all trials
 df = pd.concat([pd.read_csv(f) for f in files])
 
 df["Error"] = np.log2(np.abs(df["ReportedPercent"] - df["TruePercent"]) + 0.125)
