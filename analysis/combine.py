@@ -12,7 +12,7 @@ df = pd.concat([pd.read_csv(f) for f in files])
 df["Error"] = np.log2(np.abs(df["ReportedPercent"] - df["TruePercent"]) + 0.125)
 df["Error"] = df["Error"].where(df["ReportedPercent"] != df["TruePercent"], 0)
 
-# save combined data
+# save combined data as a master file
 df.to_csv("trials/master.csv", index=False)
 
 # report file summary
