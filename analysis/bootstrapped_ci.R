@@ -3,7 +3,7 @@ library(ggplot2)
 # load data
 df <- read.csv("trials/master.csv")
 
-# filter by vis type
+# filter by visualization type
 df$type <- factor(
   sub("_[0-9]+$", "", df$Vis),
   levels = c("bar", "stacked", "donut")
@@ -12,7 +12,7 @@ df$type <- factor(
 # plot with mean and 95% bootstrapped CI
 r_plot <- ggplot(df, aes(x = Error, y = type)) +
   
-  # mean point
+  # mean 
   stat_summary(
     fun = mean,
     geom = "point",
@@ -20,14 +20,15 @@ r_plot <- ggplot(df, aes(x = Error, y = type)) +
     color = "black"
   ) +
   
-  # bootstrapped 95% CI
+  # 95% bootstrapped CI
   stat_summary(
     fun.data = mean_cl_boot,
     geom = "errorbarh",
     height = 0.2,
     color = "black"
   ) +
-  
+
+  # labels
   labs(
     x = "Log Error",
     y = "Vis Type",
